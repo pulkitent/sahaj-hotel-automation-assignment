@@ -9,12 +9,12 @@ import static com.hotel.domain.constants.State.ON;
 public class Equipment {
     private final EquipmentType type;
     private State state;
-    private final Consumption consumption;
+    private final PowerConsumption powerConsumption;
 
-    public Equipment(EquipmentType type, State state, Consumption consumption) {
+    public Equipment(EquipmentType type, State state, PowerConsumption powerConsumption) {
         this.type = type;
         this.state = state;
-        this.consumption = consumption;
+        this.powerConsumption = powerConsumption;
     }
 
     void turnOn() {
@@ -33,8 +33,8 @@ public class Equipment {
         return this.type.equals(equipmentType);
     }
 
-    public Consumption getPowerConsumption() {
-        return this.consumption;
+    public PowerConsumption getPowerConsumption() {
+        return this.powerConsumption;
     }
 
     @Override
