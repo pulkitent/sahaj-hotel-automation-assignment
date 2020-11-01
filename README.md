@@ -22,3 +22,17 @@ I didn't feel the need for the same (Yes, I am aware of principle -
 8. Tried to put some comments so as to make business logic more understandable
 
 9. Tried to write job on every class so as to clear it's use case
+
+# Getting started
+
+Go to Startup.java and run the main method (no need to give inputs from console) 
+and check output on console (No specific reason to make this project on Gradle)
+
+# Things I could have done/improved if given more time :
+
+1. TDD and wrote unit test case with 100% code coverage
+
+2. More DRY principle, zero getters & zero setters in any class
+
+3. 100% immutable state in each class
+
