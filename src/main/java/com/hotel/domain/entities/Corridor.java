@@ -73,6 +73,7 @@ public class Corridor {
 
     private boolean isCorridorTypeAndEquipmentTypeMatching(CorridorType corridorType, EquipmentType equipmentType,
                                                            Equipment equipment) {
-        return this.corridorType.equals(corridorType) && equipment.isEquipmentTypeEqualsGivenType(equipmentType);
+        return this.corridorType.equals(corridorType)
+                && equipment.isEquipmentTypeEqualsGivenType(equipmentType);
     }
 }
