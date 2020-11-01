@@ -6,6 +6,8 @@ import com.hotel.domain.constants.State;
 import static com.hotel.domain.constants.State.OFF;
 import static com.hotel.domain.constants.State.ON;
 
+/* This class represents an equipment with type as AC/Bulb, with current state as On/Off
+and with it's power consumption */
 public class Equipment {
     private final EquipmentType type;
     private State state;

@@ -2,6 +2,7 @@ package com.hotel.domain.entities;
 
 import com.hotel.domain.constants.MotionType;
 
+/* This class represents movement with the floor and corridor on which that movement occurred */
 public class Motion {
     private final Floor floor;
     private final Corridor corridor;

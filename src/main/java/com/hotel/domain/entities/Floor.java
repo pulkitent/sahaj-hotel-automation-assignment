@@ -4,6 +4,7 @@ import java.util.List;
 
 import static com.hotel.domain.constants.CorridorType.SUB_CORRIDOR;
 
+/* This class represents a floor with main & sub corridors */
 public class Floor {
     private final List<Corridor> corridors;
 
@@ -13,6 +14,11 @@ public class Floor {
 
     public List<Corridor> getCorridors() {
         return corridors;
+    }
+
+    @Override
+    public String toString() {
+        return "Floor" + corridors;
     }
 
     PowerConsumption calculateConsumptionForAFloor() {
@@ -39,10 +45,5 @@ public class Floor {
             }
         }
         return count;
-    }
-
-    @Override
-    public String toString() {
-        return "Floor" + corridors;
     }
 }

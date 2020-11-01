@@ -12,6 +12,8 @@ import static com.hotel.domain.constants.CorridorType.SUB_CORRIDOR;
 import static com.hotel.domain.constants.EquipmentType.AIR_CONDITIONER;
 import static com.hotel.domain.constants.EquipmentType.LIGHT_BULB;
 
+/* This class represents a controller to control and optimize the
+power consumption in the hotel with motions as input from sensor */
 public class Controller {
     private final List<Motion> motions;
 

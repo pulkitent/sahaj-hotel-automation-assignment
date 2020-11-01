@@ -5,6 +5,7 @@ import com.hotel.domain.constants.EquipmentType;
 
 import java.util.List;
 
+/* This class represents a corridor with type as main/sub and a list of equipments (AC + Bulb) */
 public class Corridor {
     private final List<Equipment> equipments;
     private final CorridorType corridorType;
