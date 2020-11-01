@@ -71,12 +71,12 @@ public class Startup {
     }
 
     private static List<Equipment> getEquipments(State state) {
-        Consumption lightConsumption = new Consumption(LIGHT_POWER_CONSUMPTION);
-        Consumption acConsumption = new Consumption(AC_POWER_CONSUMPTION);
+        PowerConsumption lightPowerConsumption = new PowerConsumption(LIGHT_POWER_CONSUMPTION);
+        PowerConsumption acPowerConsumption = new PowerConsumption(AC_POWER_CONSUMPTION);
 
-        Equipment corridorLight = new Equipment(LIGHT_BULB, state, lightConsumption);
+        Equipment corridorLight = new Equipment(LIGHT_BULB, state, lightPowerConsumption);
         //AC should be in ON state for first time
-        Equipment corridorAc = new Equipment(AIR_CONDITIONER, ON, acConsumption);
+        Equipment corridorAc = new Equipment(AIR_CONDITIONER, ON, acPowerConsumption);
 
         List<Equipment> corridorEquipments = new LinkedList<>();
         corridorEquipments.add(corridorLight);
