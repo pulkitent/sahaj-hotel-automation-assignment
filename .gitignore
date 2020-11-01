@@ -1,0 +1,16 @@
+.gradle
+.idea
+*.iml
+gradle/*
+gradlew
+gradlew.bat
+classes
+build
+out
+bin
+gradle/**
+**/.DS_Store
+.classpath
+.project
+.settings/
+target/
