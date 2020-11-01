@@ -48,17 +48,26 @@ public class Corridor {
         }
     }
 
-    Consumption calculateConsumptionForACorridor() {
+    void switchOnAGivenEquipmentOfType(EquipmentType equipmentType) {
+        for (Equipment equipment : equipments) {
+            if (equipment.isEquipmentTypeEqualsGivenType(equipmentType)) {
+                equipment.turnOn();
+                break;
+            }
+        }
+    }
+
+    PowerConsumption calculateConsumptionForACorridor() {
         Integer totalPowerConsumptionValueForCorridor = 0;
 
         for (Equipment equipment : equipments) {
             if (equipment.isEquipmentOn()) {
-                Consumption powerConsumption = equipment.getPowerConsumption();
+                PowerConsumption powerConsumption = equipment.getPowerConsumption();
                 totalPowerConsumptionValueForCorridor += powerConsumption.value();
             }
         }
 
-        return new Consumption(totalPowerConsumptionValueForCorridor);
+        return new PowerConsumption(totalPowerConsumptionValueForCorridor);
     }
 
     private boolean isCorridorTypeAndEquipmentTypeMatching(CorridorType corridorType, EquipmentType equipmentType,
