@@ -1,9 +1,9 @@
 package com.hotel.domain.entities;
 
-public class Consumption {
+public class PowerConsumption {
     private final Integer value;
 
-    public Consumption(Integer value) {
+    public PowerConsumption(Integer value) {
         this.value = value;
     }
 
