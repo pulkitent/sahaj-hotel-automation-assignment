@@ -20,4 +20,8 @@ public class Motion {
     public MotionType getType() {
         return type;
     }
+
+    public Floor getFloor() {
+        return floor;
+    }
 }
