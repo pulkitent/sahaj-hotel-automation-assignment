@@ -15,15 +15,15 @@ public class Floor {
         return corridors;
     }
 
-    Consumption calculateConsumptionForAFloor() {
+    PowerConsumption calculateConsumptionForAFloor() {
         Integer totalPowerConsumptionValueForAFloor = 0;
 
         for (Corridor corridor : corridors) {
-            Consumption powerConsumption = corridor.calculateConsumptionForACorridor();
+            PowerConsumption powerConsumption = corridor.calculateConsumptionForACorridor();
             totalPowerConsumptionValueForAFloor += powerConsumption.value();
         }
 
-        return new Consumption(totalPowerConsumptionValueForAFloor);
+        return new PowerConsumption(totalPowerConsumptionValueForAFloor);
     }
 
     Integer calculateNumberOfMainCorridors() {
