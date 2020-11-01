@@ -24,16 +24,19 @@ public class Controller {
 
         for (Motion motion : motions) {
             MotionType motionType = motion.getType();
-            Corridor corridor = motion.getCorridor();
+            Floor floorOnWhichMotionOccurred = motion.getFloor();
+            Corridor corridorInWhichMotionOccurred = motion.getCorridor();
             switch (motionType) {
                 case MOVEMENT:
-                    corridor.switchOnGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
-                    closeGivenEquipmentForGivenCorridorIfLimitExceeds(floors, AIR_CONDITIONER, SUB_CORRIDOR);
-                    printOnConsole("Printing UNREST state", floors);
+                    corridorInWhichMotionOccurred.switchOnGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
+                    closeGivenEquipmentForGivenCorridorIfLimitExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
+                            SUB_CORRIDOR);
+                    printOnConsole("Printing MOVEMENT state", floors);
                     break;
                 case REST:
-                    corridor.switchOffGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
-                    corridor.switchOnGivenEquipmentForGivenCorridor(AIR_CONDITIONER, SUB_CORRIDOR);
+                    corridorInWhichMotionOccurred.switchOffGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
+                    switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
+                            SUB_CORRIDOR);
                     printOnConsole("Printing REST state", floors);
                     break;
                 default:
@@ -48,72 +51,59 @@ public class Controller {
         System.out.println(floors);
     }
 
-    private void closeGivenEquipmentForGivenCorridorIfLimitExceeds(List<Floor> floors, EquipmentType equipmentType,
-                                                                   CorridorType corridorType) {
-        int floorNumber = 0;
-        boolean shouldExitWhileLoop = false;
-
-        while (isConsumptionExceedingPowerLimit(floors)) {
-            Floor floor = floors.get(floorNumber);
-            List<Corridor> corridors = floor.getCorridors();
-
-            for (Corridor corridor : corridors) {
-                /* check if this corridor is a sub-corridor */
-                if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
-                    corridor.switchOffAGivenEquipmentOfType(equipmentType);
-                    /* check power consumption after switching off the AC */
-                    if (!isConsumptionExceedingPowerLimit(floors)) {
-                        /* if power consumption after switching off
-                        is not exceeding then break the for loop */
-                        shouldExitWhileLoop = true;
-                        break;
-                    }
+    private void switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds(Floor floor, EquipmentType equipmentType,
+                                                                         CorridorType corridorType) {
+        List<Corridor> corridors = floor.getCorridors();
+        for (Corridor corridor : corridors) {
+            /* check if this corridor is a sub-corridor */
+            if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
+                corridor.switchOnAGivenEquipmentOfType(equipmentType);
+                /* check power consumption after switching on the AC */
+                if (!isConsumptionExceedingPowerLimit(floor)) {
+                        /* if power consumption after switching on
+                        is exceeding then break the for loop */
+                    break;
                 }
             }
+        }
+    }
 
-             /* After breaking for loop break the while loop as power
-             consumption after switching off is not exceeding */
-            if (shouldExitWhileLoop) {
-                break;
+    private void closeGivenEquipmentForGivenCorridorIfLimitExceeds(Floor floorOnWhichMotionOccurred, EquipmentType equipmentType,
+                                                                   CorridorType corridorType) {
+        List<Corridor> corridors = floorOnWhichMotionOccurred.getCorridors();
+        for (Corridor corridor : corridors) {
+            /* check if this corridor is a sub-corridor */
+            if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
+                corridor.switchOffAGivenEquipmentOfType(equipmentType);
+                /* check power consumption after switching off the AC */
+                if (!isConsumptionExceedingPowerLimit(floorOnWhichMotionOccurred)) {
+                        /* if power consumption after switching off
+                        is not exceeding then break the for loop */
+                    break;
+                }
             }
-
-            floorNumber++;
         }
     }
 
-    private boolean isConsumptionExceedingPowerLimit(List<Floor> floors) {
-        Consumption totalPowerConsumptionOfAllFloors = calculateConsumptionOfAllFloors(floors);
+    private boolean isConsumptionExceedingPowerLimit(Floor floor) {
+        PowerConsumption totalPowerPowerConsumptionOfAllFloors = floor.calculateConsumptionForAFloor();
 
-        /* maximumAllowedPowerConsumption Can be cached as part of optimization */
-        Consumption maximumAllowedPowerConsumption = calculateAllowedConsumptionForAllFloors(floors);
+        /* maximumAllowedPowerConsumption can be cached
+        as part of optimization if it's same for all floors */
+        PowerConsumption maximumAllowedPowerPowerConsumption = calculateAllowedConsumptionForAFloor(floor);
 
-        return totalPowerConsumptionOfAllFloors.value() > maximumAllowedPowerConsumption.value();
+        return totalPowerPowerConsumptionOfAllFloors.value() > maximumAllowedPowerPowerConsumption.value();
     }
 
-    private Consumption calculateConsumptionOfAllFloors(List<Floor> floors) {
-        Integer totalPowerConsumptionValueForHotel = 0;
-
-        for (Floor floor : floors) {
-            Consumption powerConsumption = floor.calculateConsumptionForAFloor();
-            totalPowerConsumptionValueForHotel += powerConsumption.value();
-        }
-
-        return new Consumption(totalPowerConsumptionValueForHotel);
-    }
-
-    private Consumption calculateAllowedConsumptionForAllFloors(List<Floor> floors) {
+    private PowerConsumption calculateAllowedConsumptionForAFloor(Floor floor) {
         int allowedPower = 0;
-        Floor firstFloor = floors.get(0);
 
-        Integer numberOfMainCorridorsOnSingleFloor = firstFloor.calculateNumberOfMainCorridors();
-        Integer numberOfSubCorridorsOnSingleFloor = firstFloor.calculateNumberOfSubCorridors();
+        Integer numberOfMainCorridorsOnAFloor = floor.calculateNumberOfMainCorridors();
+        Integer numberOfSubCorridorsOnAFloor = floor.calculateNumberOfSubCorridors();
 
-        Integer totalNumberOfMainCorridors = numberOfMainCorridorsOnSingleFloor * floors.size();
-        Integer totalNumberOfSubCorridors = numberOfSubCorridorsOnSingleFloor * floors.size();
+        allowedPower = ((numberOfMainCorridorsOnAFloor * MAIN_CORRIDOR_RATE)
+                + (numberOfSubCorridorsOnAFloor * SUB_CORRIDOR_RATE));
 
-        allowedPower = totalNumberOfMainCorridors * MAIN_CORRIDOR_RATE
-                + totalNumberOfSubCorridors * SUB_CORRIDOR_RATE;
-
-        return new Consumption(allowedPower);
+        return new PowerConsumption(allowedPower);
     }
 }
