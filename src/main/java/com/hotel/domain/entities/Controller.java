@@ -23,6 +23,8 @@ public class Controller {
     void optimizePowerConsumptionForAllFloors(List<Floor> floors) {
         printOnConsole(INITIAL_STATE_OF_ALL_EQUIPMENTS, floors);
         for (Motion motion : motions) {
+            /* Encapsulation breaking can be further reduced
+            by moving switch block into Motion class */
             MotionType motionType = motion.getType();
             Floor floorOnWhichMotionOccurred = motion.getFloor();
             Corridor corridorInWhichMotionOccurred = motion.getCorridor();
@@ -53,6 +55,9 @@ public class Controller {
         System.out.println(floors);
     }
 
+    /* Code duplication can be further reduced by merging
+    switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds &
+    switchOffGivenEquipmentForGivenCorridorIfLimitExceeds */
     private void switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds(Floor floor, EquipmentType equipmentType,
                                                                          CorridorType corridorType) {
         List<Corridor> corridors = floor.getCorridors();
@@ -70,6 +75,9 @@ public class Controller {
         }
     }
 
+    /* Code duplication can be further reduced by merging
+    switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds &
+    switchOffGivenEquipmentForGivenCorridorIfLimitExceeds */
     private void switchOffGivenEquipmentForGivenCorridorIfLimitExceeds(Floor floor, EquipmentType equipmentType,
                                                                        CorridorType corridorType) {
         List<Corridor> corridors = floor.getCorridors();
