@@ -61,7 +61,7 @@ public class Controller {
             if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
                 corridor.switchOnAGivenEquipmentOfType(equipmentType);
                 /* check power consumption after switching on the AC */
-                if (!isConsumptionExceedingPowerLimit(floor)) {
+                if (isConsumptionExceedingPowerLimit(floor)) {
                         /* if power consumption after switching on
                         is exceeding then break the for loop */
                     break;
