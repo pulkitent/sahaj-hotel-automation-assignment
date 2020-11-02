@@ -6,8 +6,7 @@ import com.hotel.domain.constants.MotionType;
 
 import java.util.List;
 
-import static com.hotel.domain.constants.Constants.MAIN_CORRIDOR_RATE;
-import static com.hotel.domain.constants.Constants.SUB_CORRIDOR_RATE;
+import static com.hotel.domain.constants.Constants.*;
 import static com.hotel.domain.constants.CorridorType.SUB_CORRIDOR;
 import static com.hotel.domain.constants.EquipmentType.AIR_CONDITIONER;
 import static com.hotel.domain.constants.EquipmentType.LIGHT_BULB;
@@ -22,8 +21,7 @@ public class Controller {
     }
 
     void optimizePowerConsumptionForAllFloors(List<Floor> floors) {
-        printOnConsole("Initial state", floors);
-
+        printOnConsole(INITIAL_STATE_OF_ALL_EQUIPMENTS, floors);
         for (Motion motion : motions) {
             MotionType motionType = motion.getType();
             Floor floorOnWhichMotionOccurred = motion.getFloor();
@@ -31,15 +29,17 @@ public class Controller {
             switch (motionType) {
                 case MOVEMENT:
                     corridorInWhichMotionOccurred.switchOnGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
-                    closeGivenEquipmentForGivenCorridorIfLimitExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
+                    switchOffGivenEquipmentForGivenCorridorIfLimitExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
                             SUB_CORRIDOR);
-                    printOnConsole("Printing MOVEMENT state", floors);
+
+                    printOnConsole(EQUIPMENTS_STATE_AFTER_MOVEMENT, floors);
                     break;
                 case REST:
                     corridorInWhichMotionOccurred.switchOffGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
                     switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
                             SUB_CORRIDOR);
-                    printOnConsole("Printing REST state", floors);
+
+                    printOnConsole(EQUIPMENTS_STATE_AFTER_REST, floors);
                     break;
                 default:
                     // Do nothing for now
@@ -70,15 +70,15 @@ public class Controller {
         }
     }
 
-    private void closeGivenEquipmentForGivenCorridorIfLimitExceeds(Floor floorOnWhichMotionOccurred, EquipmentType equipmentType,
-                                                                   CorridorType corridorType) {
-        List<Corridor> corridors = floorOnWhichMotionOccurred.getCorridors();
+    private void switchOffGivenEquipmentForGivenCorridorIfLimitExceeds(Floor floor, EquipmentType equipmentType,
+                                                                       CorridorType corridorType) {
+        List<Corridor> corridors = floor.getCorridors();
         for (Corridor corridor : corridors) {
             /* check if this corridor is a sub-corridor */
             if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
                 corridor.switchOffAGivenEquipmentOfType(equipmentType);
                 /* check power consumption after switching off the AC */
-                if (!isConsumptionExceedingPowerLimit(floorOnWhichMotionOccurred)) {
+                if (!isConsumptionExceedingPowerLimit(floor)) {
                         /* if power consumption after switching off
                         is not exceeding then break the for loop */
                     break;

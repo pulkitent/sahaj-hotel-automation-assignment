@@ -33,6 +33,7 @@ public class Floor {
     }
 
     Integer calculateNumberOfMainCorridors() {
+        /* reuse calculateNumberOfSubCorridors to avoid code duplication */
         Integer numberOfSubCorridors = calculateNumberOfSubCorridors();
         return corridors.size() - numberOfSubCorridors;
     }

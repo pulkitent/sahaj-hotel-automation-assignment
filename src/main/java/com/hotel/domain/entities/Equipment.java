@@ -19,6 +19,15 @@ public class Equipment {
         this.powerConsumption = powerConsumption;
     }
 
+    public PowerConsumption getPowerConsumption() {
+        return this.powerConsumption;
+    }
+
+    @Override
+    public String toString() {
+        return type + " : " + state;
+    }
+
     void turnOn() {
         this.state = ON;
     }
@@ -33,14 +42,5 @@ public class Equipment {
 
     boolean isEquipmentTypeEqualsGivenType(EquipmentType equipmentType) {
         return this.type.equals(equipmentType);
-    }
-
-    public PowerConsumption getPowerConsumption() {
-        return this.powerConsumption;
-    }
-
-    @Override
-    public String toString() {
-        return type + " : " + state;
     }
 }
