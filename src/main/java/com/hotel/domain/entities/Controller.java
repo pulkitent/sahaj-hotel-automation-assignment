@@ -62,13 +62,14 @@ public class Controller {
         for (Corridor corridor : corridors) {
             /* check if this corridor is a sub-corridor */
             if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
+                /* Check is it equipment on scenario or off scenario */
                 if (isSwitchOnScenario) {
                     /* switch on the equipment */
                     corridor.changeStateOfAGivenEquipmentOfType(equipmentType, ON);
                     /* check power consumption after switching on the AC */
                     if (isConsumptionExceedingPowerLimit(floor)) {
                         /* if power consumption after switching on
-                        is exceeding then break the for loop */
+                        is exceeding the limit then break the for loop */
                         break;
                     }
                 } else {
@@ -77,7 +78,7 @@ public class Controller {
                     /* check power consumption after switching off the AC */
                     if (!isConsumptionExceedingPowerLimit(floor)) {
                         /* if power consumption after switching off
-                        is not exceeding then break the for loop */
+                        is not exceeding the limit then break the for loop */
                         break;
                     }
                 }
