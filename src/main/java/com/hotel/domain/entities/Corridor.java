@@ -27,18 +27,11 @@ public class Corridor {
         return this.corridorType.equals(corridorType);
     }
 
-    void switchOnGivenEquipmentForGivenCorridor(EquipmentType equipmentType, CorridorType corridorType) {
+    void changeStateAllEquipmentTypeForAGivenCorridorType(EquipmentType equipmentType, CorridorType corridorType,
+                                                          StateType finalState) {
         for (Equipment equipment : equipments) {
             if (isCorridorTypeAndEquipmentTypeMatching(corridorType, equipmentType, equipment)) {
-                equipment.turnOn();
-            }
-        }
-    }
-
-    void switchOffGivenEquipmentForGivenCorridor(EquipmentType equipmentType, CorridorType corridorType) {
-        for (Equipment equipment : equipments) {
-            if (isCorridorTypeAndEquipmentTypeMatching(corridorType, equipmentType, equipment)) {
-                equipment.turnOff();
+                changeStateOfEquipment(finalState, equipment);
             }
         }
     }

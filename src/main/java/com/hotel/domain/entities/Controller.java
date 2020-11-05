@@ -32,14 +32,16 @@ public class Controller {
             Corridor corridorInWhichMotionOccurred = motion.getCorridor();
             switch (motionType) {
                 case MOVEMENT:
-                    corridorInWhichMotionOccurred.switchOnGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
+                    corridorInWhichMotionOccurred.changeStateAllEquipmentTypeForAGivenCorridorType(LIGHT_BULB,
+                            SUB_CORRIDOR, ON);
                     switchOffGivenEquipmentForGivenCorridorIfLimitExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
                             SUB_CORRIDOR);
 
                     printOnConsole(EQUIPMENTS_STATE_AFTER_MOVEMENT, floors);
                     break;
                 case REST:
-                    corridorInWhichMotionOccurred.switchOffGivenEquipmentForGivenCorridor(LIGHT_BULB, SUB_CORRIDOR);
+                    corridorInWhichMotionOccurred.changeStateAllEquipmentTypeForAGivenCorridorType(LIGHT_BULB,
+                            SUB_CORRIDOR, OFF);
                     switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
                             SUB_CORRIDOR);
 
