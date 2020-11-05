@@ -1,4 +1,4 @@
-import com.hotel.domain.constants.State;
+import com.hotel.domain.constants.StateType;
 import com.hotel.domain.entities.*;
 
 import java.util.LinkedList;
@@ -12,8 +12,8 @@ import static com.hotel.domain.constants.EquipmentType.AIR_CONDITIONER;
 import static com.hotel.domain.constants.EquipmentType.LIGHT_BULB;
 import static com.hotel.domain.constants.MotionType.REST;
 import static com.hotel.domain.constants.MotionType.MOVEMENT;
-import static com.hotel.domain.constants.State.OFF;
-import static com.hotel.domain.constants.State.ON;
+import static com.hotel.domain.constants.StateType.OFF;
+import static com.hotel.domain.constants.StateType.ON;
 
 public class Startup {
     public static void main(String[] args) {
@@ -70,7 +70,7 @@ public class Startup {
         return new Floor(corridors);
     }
 
-    private static List<Equipment> getEquipments(State state) {
+    private static List<Equipment> getEquipments(StateType state) {
         PowerConsumption lightPowerConsumption = new PowerConsumption(LIGHT_POWER_CONSUMPTION);
         PowerConsumption acPowerConsumption = new PowerConsumption(AC_POWER_CONSUMPTION);
 

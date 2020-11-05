@@ -10,6 +10,8 @@ import static com.hotel.domain.constants.Constants.*;
 import static com.hotel.domain.constants.CorridorType.SUB_CORRIDOR;
 import static com.hotel.domain.constants.EquipmentType.AIR_CONDITIONER;
 import static com.hotel.domain.constants.EquipmentType.LIGHT_BULB;
+import static com.hotel.domain.constants.StateType.OFF;
+import static com.hotel.domain.constants.StateType.ON;
 
 /* This class represents a controller to control and optimize the
 power consumption in the hotel with motions as input from sensor */
@@ -48,11 +50,6 @@ public class Controller {
                     break;
             }
         }
-    }
-
-    private void printOnConsole(String message, List<Floor> floors) {
-        System.out.println(message);
-        System.out.println(floors);
     }
 
     /* Code duplication can be further reduced by merging
@@ -115,5 +112,10 @@ public class Controller {
                 + (numberOfSubCorridorsOnAFloor * SUB_CORRIDOR_RATE));
 
         return new PowerConsumption(allowedPower);
+    }
+
+    private void printOnConsole(String message, List<Floor> floors) {
+        System.out.println(message);
+        System.out.println(floors);
     }
 }
