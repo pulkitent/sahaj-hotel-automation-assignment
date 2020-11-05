@@ -19,13 +19,13 @@ public class Equipment {
         this.powerConsumption = powerConsumption;
     }
 
-    public PowerConsumption getPowerConsumption() {
-        return this.powerConsumption;
-    }
-
     @Override
     public String toString() {
         return type + " : " + state;
+    }
+
+    PowerConsumption getPowerConsumption() {
+        return this.powerConsumption;
     }
 
     void turnOn() {

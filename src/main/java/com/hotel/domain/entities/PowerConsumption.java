@@ -8,7 +8,7 @@ public class PowerConsumption {
         this.value = value;
     }
 
-    public Integer value() {
+    Integer value() {
         return value;
     }
 }

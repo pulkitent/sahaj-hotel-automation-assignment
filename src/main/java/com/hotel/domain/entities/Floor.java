@@ -12,13 +12,13 @@ public class Floor {
         this.corridors = mainCorridors;
     }
 
-    public List<Corridor> getCorridors() {
-        return corridors;
-    }
-
     @Override
     public String toString() {
         return "Floor" + corridors;
+    }
+
+    List<Corridor> getCorridors() {
+        return corridors;
     }
 
     PowerConsumption calculateConsumptionForAFloor() {

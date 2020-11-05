@@ -14,15 +14,15 @@ public class Motion {
         this.type = type;
     }
 
-    public Corridor getCorridor() {
+    Corridor getCorridor() {
         return corridor;
     }
 
-    public MotionType getType() {
+    MotionType getType() {
         return type;
     }
 
-    public Floor getFloor() {
+    Floor getFloor() {
         return floor;
     }
 }
