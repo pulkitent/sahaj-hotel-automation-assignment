@@ -34,16 +34,18 @@ public class Controller {
                 case MOVEMENT:
                     corridorInWhichMotionOccurred.changeStateAllEquipmentTypeForAGivenCorridorType(LIGHT_BULB,
                             SUB_CORRIDOR, ON);
-                    switchOffGivenEquipmentForGivenCorridorIfLimitExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
-                            SUB_CORRIDOR);
+                    /* If power limit exceeds */
+                    changeStateOfGivenEquipmentForGivenCorridor(floorOnWhichMotionOccurred, AIR_CONDITIONER,
+                            SUB_CORRIDOR, true);
 
                     printOnConsole(EQUIPMENTS_STATE_AFTER_MOVEMENT, floors);
                     break;
                 case REST:
                     corridorInWhichMotionOccurred.changeStateAllEquipmentTypeForAGivenCorridorType(LIGHT_BULB,
                             SUB_CORRIDOR, OFF);
-                    switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds(floorOnWhichMotionOccurred, AIR_CONDITIONER,
-                            SUB_CORRIDOR);
+                    /* If power limit doesn't exceed */
+                    changeStateOfGivenEquipmentForGivenCorridor(floorOnWhichMotionOccurred, AIR_CONDITIONER,
+                            SUB_CORRIDOR, false);
 
                     printOnConsole(EQUIPMENTS_STATE_AFTER_REST, floors);
                     break;
@@ -54,43 +56,30 @@ public class Controller {
         }
     }
 
-    /* Code duplication can be further reduced by merging
-    switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds &
-    switchOffGivenEquipmentForGivenCorridorIfLimitExceeds */
-    private void switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds(Floor floor, EquipmentType equipmentType,
-                                                                         CorridorType corridorType) {
+    private void changeStateOfGivenEquipmentForGivenCorridor(Floor floor, EquipmentType equipmentType,
+                                                             CorridorType corridorType, boolean isSwitchOnScenario) {
         List<Corridor> corridors = floor.getCorridors();
         for (Corridor corridor : corridors) {
             /* check if this corridor is a sub-corridor */
             if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
-                /* switch on the equipment */
-                corridor.changeStateOfAGivenEquipmentOfType(equipmentType, ON);
-                /* check power consumption after switching on the AC */
-                if (isConsumptionExceedingPowerLimit(floor)) {
+                if (isSwitchOnScenario) {
+                    /* switch on the equipment */
+                    corridor.changeStateOfAGivenEquipmentOfType(equipmentType, ON);
+                    /* check power consumption after switching on the AC */
+                    if (isConsumptionExceedingPowerLimit(floor)) {
                         /* if power consumption after switching on
                         is exceeding then break the for loop */
-                    break;
-                }
-            }
-        }
-    }
-
-    /* Code duplication can be further reduced by merging
-    switchOnGivenEquipmentForGivenCorridorIfLimitNotExceeds &
-    switchOffGivenEquipmentForGivenCorridorIfLimitExceeds */
-    private void switchOffGivenEquipmentForGivenCorridorIfLimitExceeds(Floor floor, EquipmentType equipmentType,
-                                                                       CorridorType corridorType) {
-        List<Corridor> corridors = floor.getCorridors();
-        for (Corridor corridor : corridors) {
-            /* check if this corridor is a sub-corridor */
-            if (corridor.isCorridorTypeEqualsToGivenType(corridorType)) {
-                /* switch off the equipment */
-                corridor.changeStateOfAGivenEquipmentOfType(equipmentType, OFF);
-                /* check power consumption after switching off the AC */
-                if (!isConsumptionExceedingPowerLimit(floor)) {
+                        break;
+                    }
+                } else {
+                    /* switch off the equipment */
+                    corridor.changeStateOfAGivenEquipmentOfType(equipmentType, OFF);
+                    /* check power consumption after switching off the AC */
+                    if (!isConsumptionExceedingPowerLimit(floor)) {
                         /* if power consumption after switching off
                         is not exceeding then break the for loop */
-                    break;
+                        break;
+                    }
                 }
             }
         }
