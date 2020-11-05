@@ -2,8 +2,11 @@ package com.hotel.domain.entities;
 
 import com.hotel.domain.constants.CorridorType;
 import com.hotel.domain.constants.EquipmentType;
+import com.hotel.domain.constants.StateType;
 
 import java.util.List;
+
+import static com.hotel.domain.constants.StateType.ON;
 
 /* This class represents a corridor with type as main/sub and a list of equipments (AC + Bulb) */
 public class Corridor {
@@ -40,19 +43,10 @@ public class Corridor {
         }
     }
 
-    void switchOffAGivenEquipmentOfType(EquipmentType equipmentType) {
+    void changeStateOfAGivenEquipmentOfType(EquipmentType equipmentType, StateType finalState) {
         for (Equipment equipment : equipments) {
             if (equipment.isEquipmentTypeEqualsGivenType(equipmentType)) {
-                equipment.turnOff();
-                break;
-            }
-        }
-    }
-
-    void switchOnAGivenEquipmentOfType(EquipmentType equipmentType) {
-        for (Equipment equipment : equipments) {
-            if (equipment.isEquipmentTypeEqualsGivenType(equipmentType)) {
-                equipment.turnOn();
+                changeStateOfEquipment(finalState, equipment);
                 break;
             }
         }
@@ -69,6 +63,14 @@ public class Corridor {
         }
 
         return new PowerConsumption(totalPowerConsumptionValueForCorridor);
+    }
+
+    private void changeStateOfEquipment(StateType finalState, Equipment equipment) {
+        if (finalState.equals(ON)) {
+            equipment.turnOn();
+        } else {
+            equipment.turnOff();
+        }
     }
 
     private boolean isCorridorTypeAndEquipmentTypeMatching(CorridorType corridorType, EquipmentType equipmentType,
