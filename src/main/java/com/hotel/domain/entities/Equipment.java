@@ -3,6 +3,8 @@ package com.hotel.domain.entities;
 import com.hotel.domain.constants.EquipmentType;
 import com.hotel.domain.constants.StateType;
 
+import java.util.Objects;
+
 import static com.hotel.domain.constants.StateType.OFF;
 import static com.hotel.domain.constants.StateType.ON;
 
@@ -22,6 +24,21 @@ public class Equipment {
     @Override
     public String toString() {
         return type + " : " + state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Equipment)) return false;
+        Equipment equipment = (Equipment) o;
+        return type == equipment.type &&
+                state == equipment.state &&
+                getPowerConsumption().equals(equipment.getPowerConsumption());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, state, getPowerConsumption());
     }
 
     PowerConsumption getPowerConsumption() {
