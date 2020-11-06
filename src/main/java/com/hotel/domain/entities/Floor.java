@@ -1,6 +1,7 @@
 package com.hotel.domain.entities;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.hotel.domain.constants.CorridorType.SUB_CORRIDOR;
 
@@ -15,6 +16,19 @@ public class Floor {
     @Override
     public String toString() {
         return "Floor" + corridors;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Floor)) return false;
+        Floor floor = (Floor) o;
+        return getCorridors().equals(floor.getCorridors());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCorridors());
     }
 
     List<Corridor> getCorridors() {

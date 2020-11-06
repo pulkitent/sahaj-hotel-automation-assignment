@@ -5,6 +5,7 @@ import com.hotel.domain.constants.EquipmentType;
 import com.hotel.domain.constants.StateType;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.hotel.domain.constants.StateType.ON;
 
@@ -21,6 +22,20 @@ public class Corridor {
     @Override
     public String toString() {
         return corridorType + " " + equipments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Corridor)) return false;
+        Corridor corridor = (Corridor) o;
+        return equipments.equals(corridor.equipments) &&
+                corridorType == corridor.corridorType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(equipments, corridorType);
     }
 
     boolean isCorridorTypeEqualsToGivenType(CorridorType corridorType) {
