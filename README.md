@@ -43,3 +43,5 @@ at some extent
 4. Encapsulation of behaviour in some classes can be further improved
 
 5. Startup.java can be improved by refactoring IO into some other class
+
+6. More mocking and stubbing of test data in unit tests
