@@ -11,17 +11,19 @@ import static com.hotel.domain.constants.StateType.ON;
 
 /* This class represents a corridor with type as main/sub and a list of equipments (AC + Bulb) */
 public class Corridor {
+    private final String corridorId;
     private final List<Equipment> equipments;
     private final CorridorType corridorType;
 
-    public Corridor(List<Equipment> equipments, CorridorType corridorType) {
+    public Corridor(String corridorId, List<Equipment> equipments, CorridorType corridorType) {
+        this.corridorId = corridorId;
         this.equipments = equipments;
         this.corridorType = corridorType;
     }
 
     @Override
     public String toString() {
-        return corridorType + " " + equipments;
+        return "\n" + corridorType + " " + corridorId +" : "+ equipments + "\n";
     }
 
     @Override

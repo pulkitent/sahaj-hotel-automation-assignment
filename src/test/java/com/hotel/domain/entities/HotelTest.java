@@ -37,9 +37,9 @@ class HotelTest {
     void setupTestData() {
         powerConsumption = new PowerConsumption(10);
         equipment = new Equipment(AIR_CONDITIONER, ON, powerConsumption);
-        subCorridor = new Corridor(singletonList(equipment), SUB_CORRIDOR);
-        mainCorridor = new Corridor(singletonList(equipment), MAIN_CORRIDOR);
-        floor = new Floor(asList(subCorridor, mainCorridor));
+        subCorridor = new Corridor("1", singletonList(equipment), SUB_CORRIDOR);
+        mainCorridor = new Corridor("1", singletonList(equipment), MAIN_CORRIDOR);
+        floor = new Floor("1", asList(subCorridor, mainCorridor));
         mockController = mock(Controller.class);
         hotel = new Hotel(singletonList(floor), mockController);
     }

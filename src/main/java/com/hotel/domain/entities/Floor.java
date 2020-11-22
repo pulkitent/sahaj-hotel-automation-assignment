@@ -7,15 +7,17 @@ import static com.hotel.domain.constants.CorridorType.SUB_CORRIDOR;
 
 /* This class represents a floor with main & sub corridors */
 public class Floor {
+    private String floorId;
     private final List<Corridor> corridors;
 
-    public Floor(List<Corridor> mainCorridors) {
+    public Floor(String floorId, List<Corridor> mainCorridors) {
+        this.floorId = floorId;
         this.corridors = mainCorridors;
     }
 
     @Override
     public String toString() {
-        return "Floor" + corridors;
+        return "\n\n" + "Floor " + floorId + "\n" + corridors;
     }
 
     @Override

@@ -23,15 +23,15 @@ public class Startup {
         List<Equipment> floor1SubCorridor2Equipments = getEquipments(OFF);
 
         //Create main & sub corridors on 1st floor
-        Corridor floor1MainCorridor1 = new Corridor(floor1MainCorridor1Equipments, MAIN_CORRIDOR);
-        Corridor floor1SubCorridor1 = new Corridor(floor1SubCorridor1Equipments, SUB_CORRIDOR);
-        Corridor floor1SubCorridor2 = new Corridor(floor1SubCorridor2Equipments, SUB_CORRIDOR);
+        Corridor floor1MainCorridor1 = new Corridor("1", floor1MainCorridor1Equipments, MAIN_CORRIDOR);
+        Corridor floor1SubCorridor1 = new Corridor("1", floor1SubCorridor1Equipments, SUB_CORRIDOR);
+        Corridor floor1SubCorridor2 = new Corridor("2", floor1SubCorridor2Equipments, SUB_CORRIDOR);
 
         //Create 1st floor
-        Floor firstFloor = getFloor(floor1MainCorridor1, floor1SubCorridor1, floor1SubCorridor2);
+        Floor firstFloor = getFloor("1",floor1MainCorridor1, floor1SubCorridor1, floor1SubCorridor2);
 
         //Create 2nd floor
-        Floor secondFloor = getSecondFloor();
+        Floor secondFloor = getSecondFloor("2");
 
         List<Floor> floors = new LinkedList<>();
         floors.add(firstFloor);
@@ -49,25 +49,25 @@ public class Startup {
         hotel.startController();
     }
 
-    private static Floor getSecondFloor() {
+    private static Floor getSecondFloor(String floorId) {
         List<Equipment> floor2MainCorridor1Equipments = getEquipments(ON);
         List<Equipment> floor2SubCorridor1Equipments = getEquipments(OFF);
         List<Equipment> floor2SubCorridor2Equipments = getEquipments(OFF);
 
-        Corridor floor2MainCorridor1 = new Corridor(floor2MainCorridor1Equipments, MAIN_CORRIDOR);
-        Corridor floor2SubCorridor1 = new Corridor(floor2SubCorridor1Equipments, SUB_CORRIDOR);
-        Corridor floor2SubCorridor2 = new Corridor(floor2SubCorridor2Equipments, SUB_CORRIDOR);
+        Corridor floor2MainCorridor1 = new Corridor("1", floor2MainCorridor1Equipments, MAIN_CORRIDOR);
+        Corridor floor2SubCorridor1 = new Corridor("1", floor2SubCorridor1Equipments, SUB_CORRIDOR);
+        Corridor floor2SubCorridor2 = new Corridor("2", floor2SubCorridor2Equipments, SUB_CORRIDOR);
 
-        return getFloor(floor2MainCorridor1, floor2SubCorridor1, floor2SubCorridor2);
+        return getFloor(floorId, floor2MainCorridor1, floor2SubCorridor1, floor2SubCorridor2);
     }
 
-    private static Floor getFloor(Corridor mainCorridor1, Corridor subCorridor1, Corridor subCorridor2) {
+    private static Floor getFloor(String floorId, Corridor mainCorridor1, Corridor subCorridor1, Corridor subCorridor2) {
         List<Corridor> corridors = new LinkedList<>();
         corridors.add(mainCorridor1);
         corridors.add(subCorridor1);
         corridors.add(subCorridor2);
 
-        return new Floor(corridors);
+        return new Floor(floorId, corridors);
     }
 
     private static List<Equipment> getEquipments(StateType state) {

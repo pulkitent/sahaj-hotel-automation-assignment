@@ -33,7 +33,6 @@ class CorridorTest {
 
     private Corridor corridor;
 
-
     @BeforeEach
     void setupTestData() {
         corridorType = MAIN_CORRIDOR;
@@ -51,7 +50,7 @@ class CorridorTest {
         equipments.add(anotherCorridorLight);
         equipments.add(corridorAc);
 
-        corridor = new Corridor(equipments, corridorType);
+        corridor = new Corridor("1", equipments, corridorType);
     }
 
     @AfterEach

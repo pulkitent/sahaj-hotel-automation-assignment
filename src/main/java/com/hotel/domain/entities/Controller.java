@@ -36,7 +36,7 @@ public class Controller {
                             SUB_CORRIDOR, ON);
                     /* If power limit exceeds */
                     changeStateOfGivenEquipmentForGivenCorridor(floorOnWhichMotionOccurred, AIR_CONDITIONER,
-                            SUB_CORRIDOR, true);
+                            SUB_CORRIDOR, false);
 
                     printOnConsole(EQUIPMENTS_STATE_AFTER_MOVEMENT, floors);
                     break;
@@ -45,7 +45,7 @@ public class Controller {
                             SUB_CORRIDOR, OFF);
                     /* If power limit doesn't exceed */
                     changeStateOfGivenEquipmentForGivenCorridor(floorOnWhichMotionOccurred, AIR_CONDITIONER,
-                            SUB_CORRIDOR, false);
+                            SUB_CORRIDOR, true);
 
                     printOnConsole(EQUIPMENTS_STATE_AFTER_REST, floors);
                     break;
