@@ -23,7 +23,7 @@ public class Corridor {
 
     @Override
     public String toString() {
-        return "\n" + corridorType + " " + corridorId +" : "+ equipments + "\n";
+        return "\n" + corridorType + " " + corridorId +" : "+ equipments;
     }
 
     @Override

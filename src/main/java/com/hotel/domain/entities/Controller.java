@@ -18,7 +18,7 @@ power consumption in the hotel with motions as input from sensor */
 public class Controller {
     private final List<Motion> motions;
 
-    private static final Boolean SHOULD_LOG = false;
+    private static final Boolean SHOULD_LOG = true;
 
     public Controller(List<Motion> motions) {
         this.motions = motions;
