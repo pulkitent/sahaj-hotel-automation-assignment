@@ -18,12 +18,14 @@ power consumption in the hotel with motions as input from sensor */
 public class Controller {
     private final List<Motion> motions;
 
+    private static final Boolean SHOULD_LOG = false;
+
     public Controller(List<Motion> motions) {
         this.motions = motions;
     }
 
     void optimizePowerConsumptionForAllFloors(List<Floor> floors) {
-        printOnConsole(INITIAL_STATE_OF_ALL_EQUIPMENTS, floors);
+        printOnConsole(INITIAL_STATE_OF_ALL_EQUIPMENTS, floors, SHOULD_LOG);
         for (Motion motion : motions) {
             /* Encapsulation breaking can be further reduced
             by moving switch block into Motion class */
@@ -38,7 +40,7 @@ public class Controller {
                     changeStateOfGivenEquipmentForGivenCorridor(floorOnWhichMotionOccurred, AIR_CONDITIONER,
                             SUB_CORRIDOR, false);
 
-                    printOnConsole(EQUIPMENTS_STATE_AFTER_MOVEMENT, floors);
+                    printOnConsole(EQUIPMENTS_STATE_AFTER_MOVEMENT, floors, SHOULD_LOG);
                     break;
                 case REST:
                     corridorInWhichMotionOccurred.changeStateAllEquipmentTypeForAGivenCorridorType(LIGHT_BULB,
@@ -47,7 +49,7 @@ public class Controller {
                     changeStateOfGivenEquipmentForGivenCorridor(floorOnWhichMotionOccurred, AIR_CONDITIONER,
                             SUB_CORRIDOR, true);
 
-                    printOnConsole(EQUIPMENTS_STATE_AFTER_REST, floors);
+                    printOnConsole(EQUIPMENTS_STATE_AFTER_REST, floors, SHOULD_LOG);
                     break;
                 default:
                     // Do nothing for now
@@ -108,8 +110,10 @@ public class Controller {
         return new PowerConsumption(allowedPower);
     }
 
-    private void printOnConsole(String message, List<Floor> floors) {
-        System.out.println(message);
-        System.out.println(floors);
+    private void printOnConsole(String message, List<Floor> floors, boolean shouldLog) {
+        if (shouldLog) {
+            System.out.println(message);
+            System.out.println(floors);
+        }
     }
 }
