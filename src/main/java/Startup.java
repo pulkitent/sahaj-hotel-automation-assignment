@@ -31,7 +31,7 @@ public class Startup {
         Floor firstFloor = getFloor("1",floor1MainCorridor1, floor1SubCorridor1, floor1SubCorridor2);
 
         //Create 2nd floor
-        Floor secondFloor = getSecondFloor("2");
+        Floor secondFloor = getSecondFloor();
 
         List<Floor> floors = new LinkedList<>();
         floors.add(firstFloor);
@@ -49,7 +49,7 @@ public class Startup {
         hotel.startController();
     }
 
-    private static Floor getSecondFloor(String floorId) {
+    private static Floor getSecondFloor() {
         List<Equipment> floor2MainCorridor1Equipments = getEquipments(ON);
         List<Equipment> floor2SubCorridor1Equipments = getEquipments(OFF);
         List<Equipment> floor2SubCorridor2Equipments = getEquipments(OFF);
@@ -58,7 +58,7 @@ public class Startup {
         Corridor floor2SubCorridor1 = new Corridor("1", floor2SubCorridor1Equipments, SUB_CORRIDOR);
         Corridor floor2SubCorridor2 = new Corridor("2", floor2SubCorridor2Equipments, SUB_CORRIDOR);
 
-        return getFloor(floorId, floor2MainCorridor1, floor2SubCorridor1, floor2SubCorridor2);
+        return getFloor("2", floor2MainCorridor1, floor2SubCorridor1, floor2SubCorridor2);
     }
 
     private static Floor getFloor(String floorId, Corridor mainCorridor1, Corridor subCorridor1, Corridor subCorridor2) {
