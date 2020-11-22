@@ -31,13 +31,14 @@ public class Corridor {
         if (this == o) return true;
         if (!(o instanceof Corridor)) return false;
         Corridor corridor = (Corridor) o;
-        return equipments.equals(corridor.equipments) &&
+        return Objects.equals(corridorId, corridor.corridorId) &&
+                Objects.equals(equipments, corridor.equipments) &&
                 corridorType == corridor.corridorType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(equipments, corridorType);
+        return Objects.hash(corridorId, equipments, corridorType);
     }
 
     boolean isCorridorTypeEqualsToGivenType(CorridorType corridorType) {

@@ -25,12 +25,13 @@ public class Floor {
         if (this == o) return true;
         if (!(o instanceof Floor)) return false;
         Floor floor = (Floor) o;
-        return getCorridors().equals(floor.getCorridors());
+        return Objects.equals(floorId, floor.floorId) &&
+                Objects.equals(getCorridors(), floor.getCorridors());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCorridors());
+        return Objects.hash(floorId, getCorridors());
     }
 
     List<Corridor> getCorridors() {
