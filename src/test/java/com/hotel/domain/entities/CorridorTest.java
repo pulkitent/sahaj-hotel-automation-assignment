@@ -56,10 +56,8 @@ class CorridorTest {
     @AfterEach
     void deleteTestData() {
         corridorType = null;
-        lightPowerConsumption = null;
-        acPowerConsumption = null;
-        corridorLight = null;
-        corridorAc = null;
+        lightPowerConsumption = acPowerConsumption = null;
+        corridorLight = corridorAc = null;
         equipments = null;
         corridor = null;
     }

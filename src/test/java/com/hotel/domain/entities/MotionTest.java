@@ -43,8 +43,7 @@ class MotionTest {
     void deleteTestData() {
         powerConsumption = null;
         equipment = null;
-        subCorridor = null;
-        mainCorridor = null;
+        subCorridor = mainCorridor = null;
         floor = null;
         motion = null;
     }

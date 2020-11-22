@@ -46,21 +46,6 @@ class ControllerTest {
 
     private Controller controller;
 
-    @AfterEach
-    void deleteTestData() {
-        powerConsumption = acPowerConsumption = null;
-        corridorLight = corridorAc = null;
-        equipments = null;
-        floor1MainCorridor1 = floor1SubCorridor1 = floor1SubCorridor2 = null;
-        floor2MainCorridor1 = floor2SubCorridor1 = floor2SubCorridor2 = null;
-        floor1CorridorsList = floor2CorridorsList = null;
-        floor1 = floor2 = null;
-        floors = null;
-        movementInFloor1SubCorridor2 = noMovementInFloor1SubCorridor2 = null;
-        motions = null;
-        controller = null;
-    }
-
     @BeforeEach
     void setupTestData() {
         floor1MainCorridor1 = getCorridor("1", MAIN_CORRIDOR, ON, ON);
@@ -98,8 +83,23 @@ class ControllerTest {
         controller = new Controller(motions);
     }
 
+    @AfterEach
+    void deleteTestData() {
+        powerConsumption = acPowerConsumption = null;
+        corridorLight = corridorAc = null;
+        equipments = null;
+        floor1MainCorridor1 = floor1SubCorridor1 = floor1SubCorridor2 = null;
+        floor2MainCorridor1 = floor2SubCorridor1 = floor2SubCorridor2 = null;
+        floor1CorridorsList = floor2CorridorsList = null;
+        floor1 = floor2 = null;
+        floors = null;
+        movementInFloor1SubCorridor2 = noMovementInFloor1SubCorridor2 = null;
+        motions = null;
+        controller = null;
+    }
+
     @Test
-    @DisplayName("")
+    @DisplayName("Should Optimize PowerConsumption For Hotel With Two Floors And One Motion")
     public void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithTwoFloorsAndOneMotion() {
         //Arrange
         movementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, MOVEMENT);
@@ -138,7 +138,7 @@ class ControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Should Optimize PowerConsumption For Hotel With Two Floors And Two Motion")
     public void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithTwoFloorsAndTwoMotions() {
         //Arrange
         Corridor expectedFloor1MainCorridor1 = getCorridor("1", MAIN_CORRIDOR, ON, ON);
@@ -171,7 +171,7 @@ class ControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Should Optimize PowerConsumption For Hotel With One Floor And Two Motion")
     public void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithOneFloorAndTwoMotions() {
         //Arrange
         Corridor expectedFloor1MainCorridor1 = getCorridor("1", MAIN_CORRIDOR, ON, ON);
