@@ -23,6 +23,11 @@ public class PowerConsumption {
         return Objects.hash(value);
     }
 
+    @Override
+    public String toString() {
+        return "PowerConsumption = " + value;
+    }
+
     Integer value() {
         return value;
     }

@@ -187,7 +187,8 @@ class ControllerTest {
         assertThat(floors.get(0).getCorridors().get(2), is(expectedFloor1SubCorridor2));
     }
 
-    private Corridor getCorridor(String corridorId, CorridorType corridorType, StateType lightStateType, StateType acStateType) {
+    private Corridor getCorridor(String corridorId, CorridorType corridorType, StateType lightStateType,
+                                 StateType acStateType) {
         powerConsumption = new PowerConsumption(LIGHT_POWER_CONSUMPTION);
         acPowerConsumption = new PowerConsumption(AC_POWER_CONSUMPTION);
 
