@@ -100,7 +100,7 @@ class ControllerTest {
 
     @Test
     @DisplayName("Should Optimize PowerConsumption For Hotel With Two Floors And One Motion")
-    public void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithTwoFloorsAndOneMotion() {
+    void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithTwoFloorsAndOneMotion() {
         //Arrange
         movementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, MOVEMENT);
         List<Motion> anotherMotionList = new LinkedList<>();
@@ -139,7 +139,7 @@ class ControllerTest {
 
     @Test
     @DisplayName("Should Optimize PowerConsumption For Hotel With Two Floors And Two Motion")
-    public void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithTwoFloorsAndTwoMotions() {
+    void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithTwoFloorsAndTwoMotions() {
         //Arrange
         Corridor expectedFloor1MainCorridor1 = getCorridor("1", MAIN_CORRIDOR, ON, ON);
         Corridor expectedFloor1SubCorridor1 = getCorridor("1", SUB_CORRIDOR, OFF, ON);
@@ -172,7 +172,7 @@ class ControllerTest {
 
     @Test
     @DisplayName("Should Optimize PowerConsumption For Hotel With One Floor And Two Motion")
-    public void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithOneFloorAndTwoMotions() {
+    void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithOneFloorAndTwoMotions() {
         //Arrange
         Corridor expectedFloor1MainCorridor1 = getCorridor("1", MAIN_CORRIDOR, ON, ON);
         Corridor expectedFloor1SubCorridor1 = getCorridor("1", SUB_CORRIDOR, OFF, ON);
