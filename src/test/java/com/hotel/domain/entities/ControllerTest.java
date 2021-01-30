@@ -70,8 +70,8 @@ class ControllerTest {
 
         floor2 = new Floor("2", floor2CorridorsList);
 
-        movementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, MOVEMENT);
-        noMovementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, REST);
+        movementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, MOVEMENT, controller);
+        noMovementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, REST, controller);
 
         floors = new LinkedList<>();
         floors.add(floor1);
@@ -80,7 +80,7 @@ class ControllerTest {
         motions.add(movementInFloor1SubCorridor2);
         motions.add(noMovementInFloor1SubCorridor2);
 
-        controller = new Controller(motions);
+        controller = new Controller(motions, floors);
     }
 
     @AfterEach
@@ -102,7 +102,7 @@ class ControllerTest {
     @DisplayName("Should Optimize PowerConsumption For Hotel With Two Floors And One Motion")
     void optimizePowerConsumptionForAllFloors_ShouldOptimizePowerConsumptionForHotelWithTwoFloorsAndOneMotion() {
         //Arrange
-        movementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, MOVEMENT);
+        movementInFloor1SubCorridor2 = new Motion(floor1, floor1SubCorridor2, MOVEMENT, controller);
         List<Motion> anotherMotionList = new LinkedList<>();
         anotherMotionList.add(movementInFloor1SubCorridor2);
 
@@ -115,7 +115,7 @@ class ControllerTest {
         Corridor expectedFloor2SubCorridor2 = getCorridor("2", SUB_CORRIDOR, OFF, ON);
         floors.add(floor2);
 
-        Controller anotherController = new Controller(anotherMotionList);
+        Controller anotherController = new Controller(anotherMotionList, floors);
 
         //Action
         anotherController.optimizePowerConsumptionForAllFloors(floors);

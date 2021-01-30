@@ -17,6 +17,7 @@ import static com.hotel.domain.constants.StateType.ON;
 
 public class Startup {
     public static void main(String[] args) {
+
         //Create all equipments for main & sub corridors on 1st floor
         List<Equipment> floor1MainCorridor1Equipments = getEquipments(ON);
         List<Equipment> floor1SubCorridor1Equipments = getEquipments(OFF);
@@ -28,7 +29,7 @@ public class Startup {
         Corridor floor1SubCorridor2 = new Corridor("2", floor1SubCorridor2Equipments, SUB_CORRIDOR);
 
         //Create 1st floor
-        Floor firstFloor = getFloor("1",floor1MainCorridor1, floor1SubCorridor1, floor1SubCorridor2);
+        Floor firstFloor = getFloor("1", floor1MainCorridor1, floor1SubCorridor1, floor1SubCorridor2);
 
         //Create 2nd floor
         Floor secondFloor = getSecondFloor();
@@ -37,14 +38,17 @@ public class Startup {
         floors.add(firstFloor);
         floors.add(secondFloor);
 
-        Motion movementInFloor1SubCorridor2 = new Motion(firstFloor, floor1SubCorridor2, MOVEMENT);
-        Motion noMovementInFloor2SubCorridor2 = new Motion(firstFloor, floor1SubCorridor2, REST);
+        Controller controller = new Controller(motions, floors);
+        Motion movementInFloor1SubCorridor2 = new Motion(firstFloor, floor1SubCorridor2, MOVEMENT, controller);
+        Motion noMovementInFloor2SubCorridor2 = new Motion(firstFloor, floor1SubCorridor2, REST, controller);
+
+        movementInFloor1SubCorridor2.publishMotion();
 
         List<Motion> motions = new LinkedList<>();
         motions.add(movementInFloor1SubCorridor2);
         motions.add(noMovementInFloor2SubCorridor2);
 
-        Controller controller = new Controller(motions);
+        Controller controller = new Controller(motions, floors);
         Hotel hotel = new Hotel(floors, controller);
         hotel.startController();
     }

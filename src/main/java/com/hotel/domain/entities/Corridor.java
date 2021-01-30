@@ -15,6 +15,14 @@ public class Corridor {
     private final List<Equipment> equipments;
     private final CorridorType corridorType;
 
+    public CorridorType getCorridorType() {
+        return corridorType;
+    }
+
+    public String getCorridorId() {
+        return corridorId;
+    }
+
     public Corridor(String corridorId, List<Equipment> equipments, CorridorType corridorType) {
         this.corridorId = corridorId;
         this.equipments = equipments;

@@ -36,7 +36,7 @@ class MotionTest {
         subCorridor = new Corridor("1", singletonList(equipment), SUB_CORRIDOR);
         mainCorridor = new Corridor("1", singletonList(equipment), MAIN_CORRIDOR);
         floor = new Floor("1", asList(subCorridor, mainCorridor));
-        motion = new Motion(floor, subCorridor, MOVEMENT);
+        motion = new Motion(floor, subCorridor, MOVEMENT, controller);
     }
 
     @AfterEach
