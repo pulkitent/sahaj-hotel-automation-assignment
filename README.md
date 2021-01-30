@@ -29,9 +29,9 @@ below:
 9. When a motion is detected in one of the sub corridors the corresponding lights need to be switched ON between 6PM 
    to 6AM (Night Time slot)
    
-10. The total power consumption of all the ACs and lights combined should not exceed (Number of Main corridors * 15) 
-+ (Number of sub corridors * 10) units of per floor. Sub corridor AC could be switched OFF to ensure that the power 
-  consumption is not more than the specified maximum value
+10. The total power consumption of all the ACs and lights combined should not exceed (Number of Main corridors * 15) + (Number of sub corridors * 10) 
+    units of per floor. Sub corridor AC could be switched OFF to ensure that the power 
+    consumption is not more than the specified maximum value
   
 11. When there is no motion for more than a minute the sub corridor lights should be switched OFF and AC needs to be 
     switched ON Motion in sub-corridors is input to the controller, which needs to keep track and optimise the power 
