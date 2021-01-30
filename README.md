@@ -1,4 +1,4 @@
-Problem Statement :
+# Problem Statement :
 
 A very prestigious chain of hotels is facing a problem of huge consumption of electricity bills for
 its electronic equipments. The common equipments, like lights, ACs, etc are currently controlled
@@ -10,50 +10,68 @@ equipments.
 The way the hotel equipments are organised and the requirements for the Controller are listed
 below:
 
-● A Hotel can have multiple floors
-● Each floor can have multiple main corridors and sub corridors
-● Both main corridor and sub corridor have one light each
-● Both main and sub corridor lights consume 5 units of power when ON
-● Both main and sub corridor have independently controllable ACs
-● Both main and sub corridor ACs consume 10 units of power when ON
-● All the lights in all the main corridors need to be switched ON between 6PM to 6AM, which is the Night Time slot
-● By default, all ACs are switched ON, all the time
-● When a motion is detected in one of the sub corridors the corresponding lights need to be switched ON between 6PM to 6AM (Night Time slot)
-● The total power consumption of all the ACs and lights combined should not exceed (Number of Main corridors * 15) + (Number of sub corridors * 10) units of per floor. Sub corridor AC could be switched OFF to ensure that the power consumption is not more than the specified maximum value
-● When there is no motion for more than a minute the sub corridor lights should be switched OFF and AC needs to be switched ON Motion in sub-corridors is input to the controller, which needs to keep track and optimise the power consumption.
+1. A Hotel can have multiple floors
+
+2. Each floor can have multiple main corridors and sub corridors
+   
+3. Both main corridor and sub corridor have one light each
+   
+4. Both main and sub corridor lights consume 5 units of power when ON
+   
+5. Both main and sub corridor have independently controllable ACs
+   
+6. Both main and sub corridor ACs consume 10 units of power when ON
+   
+7. All the lights in all the main corridors need to be switched ON between 6PM to 6AM, which is the Night Time slot
+   
+8. By default, all ACs are switched ON, all the time
+   
+9. When a motion is detected in one of the sub corridors the corresponding lights need to be switched ON between 6PM 
+   to 6AM (Night Time slot)
+   
+10. The total power consumption of all the ACs and lights combined should not exceed (Number of Main corridors * 15) 
++ (Number of sub corridors * 10) units of per floor. Sub corridor AC could be switched OFF to ensure that the power 
+  consumption is not more than the specified maximum value
+  
+11. When there is no motion for more than a minute the sub corridor lights should be switched OFF and AC needs to be 
+    switched ON Motion in sub-corridors is input to the controller, which needs to keep track and optimise the power 
+    consumption.
 
 Write a program that takes input values for Floors, Main corridors, Sub corridors and takes
 different external inputs for motion in sub corridors. For each input, the program prints out the
 state of all the lights and ACs in the hotel. For simplicity, assume that the controller is operating
 at the Night Time.
 
-![alt text](https://github.com/pulkitent/hotel-automation/edit/master/blob/master/sample-input-and-output.png?raw=true)
+![alt text](https://raw.githubusercontent.com/pulkitent/hotel-automation/master/Sample%20input%20and%20output.png)
 
 Since the hotel management is trying this for the first time, it would be changing the
 requirements as to which electronic equipments are controlled and the criteria based on which
 they are controlled. Therefore, the solution design should be flexible enough to absorb these
 changes without a need to make significant changes in the program.
 
-
-What the company is looking for
+# What the company is looking for
 
 They are looking for people who can write code that has flexibility built in, by
 adhering to the principles of Object Oriented Development, and have the ability to
 deal with the real-life constraints / trade-offs while designing a system.
 
-It is important to note that theyt are not looking for a GUI and they are not assessing
+It is important to note that they are not looking for a GUI and they are not assessing
 you on the capabilities around code required to do the I/O. The focus is on the
-overall design​. So, while building a solution, it would be nicer if input to the code
+overall design. So, while building a solution, it would be nicer if input to the code
 is provided either via unit tests or a file. Using command line (for input) can be
 tedious and difficult to test, so it is best avoided.
 Following is a list of things to keep in mind, before you submit your code :
 
-● Is behaviour of an object distinguished from its state and is the state
+1. Is behaviour of an object distinguished from its state and is the state
 encapsulated?
-● Have you applied SOLID principles to your code?
-● Have you applied principles of YAGNI and KISS (additional info here)?
-● Have you looked at basic refactoring to improve design of your code?
-● Finally, and foremost, are the principles applied in a pragmatic way.
+   
+2. Have you applied SOLID principles to your code?
+   
+3. Have you applied principles of YAGNI and KISS (additional info here)?
+   
+4. Have you looked at basic refactoring to improve design of your code?
+   
+5. Finally, and foremost, are the principles applied in a pragmatic way.
 
 Simplicity is the strongest of the trait of a piece of code. However, easily
 written code may not necessarily be simple code.
